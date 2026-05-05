@@ -9482,28 +9482,13 @@ Library:GiveSignal(Players.PlayerRemoving:Connect(OnPlayerChange))
 Library:GiveSignal(Teams.ChildAdded:Connect(OnTeamChange))
 Library:GiveSignal(Teams.ChildRemoved:Connect(OnTeamChange))
 
--- Добавляем тему Mspaint (старые значения)
-Library:SetScheme("Mspaint", {
-    BackgroundColor = Color3.fromRGB(15, 15, 15),
-    MainColor = Color3.fromRGB(25, 25, 25),
-    AccentColor = Color3.fromRGB(125, 85, 255),
-    OutlineColor = Color3.fromRGB(40, 40, 40),
-    FontColor = Color3.fromRGB(255, 255, 255),
-    Font = Font.fromEnum(Enum.Font.Code)
-})
-
--- Добавляем тему Default (новые значения)
-Library:SetScheme("Default", {
-    BackgroundColor = Color3.fromRGB(0, 0, 0),
-    MainColor = Color3.fromRGB(25, 25, 25),
-    AccentColor = Color3.fromRGB(200, 198, 204),
-    OutlineColor = Color3.fromRGB(40, 40, 40),
-    FontColor = Color3.fromRGB(255, 255, 255),
-    Font = Font.fromEnum(Enum.Font.Gotham)
-})
-
--- Активируем тему Default
-Library:SetScheme("Default")
+Library.Scheme.BackgroundColor = Color3.fromRGB(0, 0, 0)
+Library.Scheme.MainColor = Color3.fromRGB(25, 25, 25)
+Library.Scheme.AccentColor = Color3.fromRGB(200, 198, 204)
+Library.Scheme.OutlineColor = Color3.fromRGB(40, 40, 40)
+Library.Scheme.FontColor = Color3.fromRGB(255, 255, 255)
+Library.Scheme.Font = Font.fromEnum(Enum.Font.Gotham)
+Library:UpdateColorsUsingRegistry()
 
 getgenv().Library = Library
 return Library
