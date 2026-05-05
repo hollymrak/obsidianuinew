@@ -219,12 +219,13 @@ local Library = {
 
     IsLightTheme = false,
     Scheme = {
-        BackgroundColor = Color3.fromRGB(15, 15, 15),
+        -- Default Theme (Black/Dark Gray with Gotham font)
+        BackgroundColor = Color3.fromRGB(0, 0, 0),
         MainColor = Color3.fromRGB(25, 25, 25),
-        AccentColor = Color3.fromRGB(125, 85, 255),
+        AccentColor = Color3.fromRGB(200, 198, 204),
         OutlineColor = Color3.fromRGB(40, 40, 40),
         FontColor = Color3.new(1, 1, 1),
-        Font = Font.fromEnum(Enum.Font.Code),
+        Font = Font.fromEnum(Enum.Font.Gotham),
 
         RedColor = Color3.fromRGB(255, 50, 50),
         DestructiveColor = Color3.fromRGB(220, 38, 38),
@@ -347,7 +348,7 @@ local Templates = {
         FooterButtons = {}
     },
     Loading = {
-        Title = "mspaint",
+        Title = "Mspaint",
         Icon = 95816097006870,
         IconSize = UDim2.fromOffset(30, 30),
 
@@ -3454,8 +3455,7 @@ do
         Groupbox:Resize()
 
         Label.TextLabel = TextLabel
-        Label.Container = Container
-        if not Data.DoesWrap then
+        Label.Container = Container        if not Data.DoesWrap then
             setmetatable(Label, BaseAddons)
         end
 
@@ -8711,7 +8711,7 @@ function Library:CreateWindow(WindowInfo)
     end
 
     if Library.IsMobile then
-        local ToggleButton = Library:AddDraggableButton("Open/Close UI", function()
+        local ToggleButton = Library:AddDraggableButton("Toggle", function()
             Library:Toggle()
         end, true)
 
@@ -9481,14 +9481,6 @@ Library:GiveSignal(Players.PlayerRemoving:Connect(OnPlayerChange))
 
 Library:GiveSignal(Teams.ChildAdded:Connect(OnTeamChange))
 Library:GiveSignal(Teams.ChildRemoved:Connect(OnTeamChange))
-
-Library.Scheme.BackgroundColor = Color3.fromRGB(0, 0, 0)
-Library.Scheme.MainColor = Color3.fromRGB(25, 25, 25)
-Library.Scheme.AccentColor = Color3.fromRGB(200, 198, 204)
-Library.Scheme.OutlineColor = Color3.fromRGB(40, 40, 40)
-Library.Scheme.FontColor = Color3.fromRGB(255, 255, 255)
-Library.Scheme.Font = Font.fromEnum(Enum.Font.Gotham)
-Library:UpdateColorsUsingRegistry()
 
 getgenv().Library = Library
 return Library
