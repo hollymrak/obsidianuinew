@@ -7,6 +7,7 @@ local clonefunction = (clonefunction or copyfunction or function(func)
 end)
 
 local HttpService: HttpService = cloneref(game:GetService("HttpService"))
+local SoundService = cloneref(game:GetService("SoundService"))
 local isfolder, isfile, listfiles = isfolder, isfile, listfiles
 
 if typeof(clonefunction) == "function" then
@@ -37,6 +38,17 @@ if typeof(clonefunction) == "function" then
     end
 end
 
+local function PlayToggleSound()
+    local s = Instance.new("Sound")
+    s.SoundId = "rbxassetid://99979147606311"
+    s.Volume = 0.5
+    s.Parent = SoundService
+    s:Play()
+    s.Ended:Connect(function()
+        s:Destroy()
+    end)
+end
+
 local ThemeManager = {}
 do
     local ThemeFields = { "FontColor", "MainColor", "AccentColor", "BackgroundColor", "OutlineColor" }
@@ -51,80 +63,144 @@ do
         },
         ["HollyScriptX"] = {
             1,
-            { FontColor = "f6ecff", MainColor = "191919", AccentColor = "c2c2f7", BackgroundColor = "000000", OutlineColor = "282828", FontFace = "Code" },
+            { FontColor = "f6ecff", MainColor = "191919", AccentColor = "c2c2f7", BackgroundColor = "000000", OutlineColor = "282828", FontFace = "Gotham" },
         },
         ["Mspaint"] = {
             2,
-            { FontColor = "ffffff", MainColor = "232323", AccentColor = "7961d9", BackgroundColor = "1b1919", OutlineColor = "282828", FontFace = "Code" },
+            { FontColor = "ffffff", MainColor = "232323", AccentColor = "7961d9", BackgroundColor = "1b1919", OutlineColor = "282828", FontFace = "Gotham" },
         },
         ["BBot"] = {
             3,
-            { FontColor = "ffffff", MainColor = "1e1e1e", AccentColor = "7e48a3", BackgroundColor = "232323", OutlineColor = "141414", FontFace = "Code" },
+            { FontColor = "ffffff", MainColor = "1e1e1e", AccentColor = "7e48a3", BackgroundColor = "232323", OutlineColor = "141414", FontFace = "Gotham" },
         },
         ["Fatality"] = {
             4,
-            { FontColor = "ffffff", MainColor = "1e1842", AccentColor = "c50754", BackgroundColor = "191335", OutlineColor = "3c355d", FontFace = "Code" },
+            { FontColor = "ffffff", MainColor = "1e1842", AccentColor = "c50754", BackgroundColor = "191335", OutlineColor = "3c355d", FontFace = "Gotham" },
         },
         ["Jester"] = {
             5,
-            { FontColor = "ffffff", MainColor = "242424", AccentColor = "db4467", BackgroundColor = "1c1c1c", OutlineColor = "373737", FontFace = "Jura" },
+            { FontColor = "ffffff", MainColor = "242424", AccentColor = "db4467", BackgroundColor = "1c1c1c", OutlineColor = "373737", FontFace = "Gotham" },
         },
         ["Mint"] = {
             6,
-            { FontColor = "ffffff", MainColor = "242424", AccentColor = "3db488", BackgroundColor = "1c1c1c", OutlineColor = "373737", FontFace = "Code" },
+            { FontColor = "ffffff", MainColor = "242424", AccentColor = "3db488", BackgroundColor = "1c1c1c", OutlineColor = "373737", FontFace = "Gotham" },
         },
         ["Tokyo Night"] = {
             7,
-            { FontColor = "ffffff", MainColor = "191925", AccentColor = "6759b3", BackgroundColor = "16161f", OutlineColor = "323232", FontFace = "Code" },
+            { FontColor = "ffffff", MainColor = "191925", AccentColor = "6759b3", BackgroundColor = "16161f", OutlineColor = "323232", FontFace = "Gotham" },
         },
         ["Ubuntu"] = {
             8,
-            { FontColor = "ffffff", MainColor = "3e3e3e", AccentColor = "e2581e", BackgroundColor = "323232", OutlineColor = "191919", FontFace = "Code" },
+            { FontColor = "ffffff", MainColor = "3e3e3e", AccentColor = "e2581e", BackgroundColor = "323232", OutlineColor = "191919", FontFace = "Gotham" },
         },
         ["Quartz"] = {
             9,
-            { FontColor = "ffffff", MainColor = "232330", AccentColor = "426e87", BackgroundColor = "1d1b26", OutlineColor = "27232f", FontFace = "Code" },
+            { FontColor = "ffffff", MainColor = "232330", AccentColor = "426e87", BackgroundColor = "1d1b26", OutlineColor = "27232f", FontFace = "Gotham" },
         },
         ["Nord"] = {
             10,
-            { FontColor = "eceff4", MainColor = "3b4252", AccentColor = "88c0d0", BackgroundColor = "2e3440", OutlineColor = "4c566a", FontFace = "Code" },
+            { FontColor = "eceff4", MainColor = "3b4252", AccentColor = "88c0d0", BackgroundColor = "2e3440", OutlineColor = "4c566a", FontFace = "Gotham" },
         },
         ["Dracula"] = {
             11,
-            { FontColor = "f8f8f2", MainColor = "44475a", AccentColor = "ff79c6", BackgroundColor = "282a36", OutlineColor = "6272a4", FontFace = "Code" },
+            { FontColor = "f8f8f2", MainColor = "44475a", AccentColor = "ff79c6", BackgroundColor = "282a36", OutlineColor = "6272a4", FontFace = "Gotham" },
         },
         ["Monokai"] = {
             12,
-            { FontColor = "f8f8f2", MainColor = "272822", AccentColor = "f92672", BackgroundColor = "1e1f1c", OutlineColor = "49483e", FontFace = "Code" },
+            { FontColor = "f8f8f2", MainColor = "272822", AccentColor = "f92672", BackgroundColor = "1e1f1c", OutlineColor = "49483e", FontFace = "Gotham" },
         },
         ["Gruvbox"] = {
             13,
-            { FontColor = "ebdbb2", MainColor = "3c3836", AccentColor = "fb4934", BackgroundColor = "282828", OutlineColor = "504945", FontFace = "Code" },
+            { FontColor = "ebdbb2", MainColor = "3c3836", AccentColor = "fb4934", BackgroundColor = "282828", OutlineColor = "504945", FontFace = "Gotham" },
         },
         ["Solarized"] = {
             14,
-            { FontColor = "839496", MainColor = "073642", AccentColor = "cb4b16", BackgroundColor = "002b36", OutlineColor = "586e75", FontFace = "Code" },
+            { FontColor = "839496", MainColor = "073642", AccentColor = "cb4b16", BackgroundColor = "002b36", OutlineColor = "586e75", FontFace = "Gotham" },
         },
         ["Catppuccin"] = {
             15,
-            { FontColor = "d9e0ee", MainColor = "302d41", AccentColor = "f5c2e7", BackgroundColor = "1e1e2e", OutlineColor = "575268", FontFace = "Code" },
+            { FontColor = "d9e0ee", MainColor = "302d41", AccentColor = "f5c2e7", BackgroundColor = "1e1e2e", OutlineColor = "575268", FontFace = "Gotham" },
         },
         ["One Dark"] = {
             16,
-            { FontColor = "abb2bf", MainColor = "282c34", AccentColor = "c678dd", BackgroundColor = "21252b", OutlineColor = "5c6370", FontFace = "Code" },
+            { FontColor = "abb2bf", MainColor = "282c34", AccentColor = "c678dd", BackgroundColor = "21252b", OutlineColor = "5c6370", FontFace = "Gotham" },
         },
         ["Cyberpunk"] = {
             17,
-            { FontColor = "f9f9f9", MainColor = "262335", AccentColor = "00ff9f", BackgroundColor = "1a1a2e", OutlineColor = "413c5e", FontFace = "Code" },
+            { FontColor = "00ff9f", MainColor = "0d0d1a", AccentColor = "ff00ff", BackgroundColor = "1a0033", OutlineColor = "330066", FontFace = "Gotham" },
         },
         ["Oceanic Next"] = {
             18,
-            { FontColor = "d8dee9", MainColor = "1b2b34", AccentColor = "6699cc", BackgroundColor = "16232a", OutlineColor = "343d46", FontFace = "Code" },
+            { FontColor = "d8dee9", MainColor = "1b2b34", AccentColor = "6699cc", BackgroundColor = "16232a", OutlineColor = "343d46", FontFace = "Gotham" },
         },
         ["Material"] = {
             19,
-            { FontColor = "eeffff", MainColor = "212121", AccentColor = "82aaff", BackgroundColor = "151515", OutlineColor = "424242", FontFace = "Code" },
-        }
+            { FontColor = "eeffff", MainColor = "212121", AccentColor = "82aaff", BackgroundColor = "151515", OutlineColor = "424242", FontFace = "Gotham" },
+        },
+        ["Sunset"] = {
+            20,
+            { FontColor = "ffd700", MainColor = "4a1a1a", AccentColor = "ff6b35", BackgroundColor = "2d0a0a", OutlineColor = "8b3a3a", FontFace = "Gotham" },
+        },
+        ["Midnight Blue"] = {
+            21,
+            { FontColor = "e0e0ff", MainColor = "0a1628", AccentColor = "4a90e2", BackgroundColor = "050d1a", OutlineColor = "1a2a4a", FontFace = "Gotham" },
+        },
+        ["Royal Purple"] = {
+            22,
+            { FontColor = "f0e6ff", MainColor = "1a0a2e", AccentColor = "9b59b6", BackgroundColor = "0f0518", OutlineColor = "3a1e5e", FontFace = "Gotham" },
+        },
+        ["Emerald"] = {
+            23,
+            { FontColor = "e0ffe0", MainColor = "0a2e1a", AccentColor = "2ecc71", BackgroundColor = "05180a", OutlineColor = "1a5e3a", FontFace = "Gotham" },
+        },
+        ["Ruby Red"] = {
+            24,
+            { FontColor = "ffe0e0", MainColor = "2e0a0a", AccentColor = "e74c3c", BackgroundColor = "180505", OutlineColor = "5e1a1a", FontFace = "Gotham" },
+        },
+        ["Coral Reef"] = {
+            25,
+            { FontColor = "fff0e0", MainColor = "2e1a0a", AccentColor = "ff7e5e", BackgroundColor = "180d05", OutlineColor = "5e3a1a", FontFace = "Gotham" },
+        },
+        ["Silver"] = {
+            26,
+            { FontColor = "f0f0f0", MainColor = "2a2a2a", AccentColor = "bdc3c7", BackgroundColor = "1a1a1a", OutlineColor = "4a4a4a", FontFace = "Gotham" },
+        },
+        ["Gold"] = {
+            27,
+            { FontColor = "fff4e0", MainColor = "2e2a0a", AccentColor = "f39c12", BackgroundColor = "181505", OutlineColor = "5e4a1a", FontFace = "Gotham" },
+        },
+        ["Neon Genesis"] = {
+            28,
+            { FontColor = "00ffcc", MainColor = "0a0a0a", AccentColor = "ff3366", BackgroundColor = "000000", OutlineColor = "ff6600", FontFace = "Gotham" },
+        },
+        ["Synthwave"] = {
+            29,
+            { FontColor = "ff6bff", MainColor = "1a0a2e", AccentColor = "00ffff", BackgroundColor = "0a001a", OutlineColor = "ff00ff", FontFace = "Gotham" },
+        },
+        ["Matrix"] = {
+            30,
+            { FontColor = "00ff41", MainColor = "0d1f0d", AccentColor = "008f11", BackgroundColor = "050f05", OutlineColor = "1a3f1a", FontFace = "Gotham" },
+        },
+        ["Cherry Blossom"] = {
+            31,
+            { FontColor = "ffe0f0", MainColor = "2e1428", AccentColor = "ff69b4", BackgroundColor = "1a0d14", OutlineColor = "5e2840", FontFace = "Gotham" },
+        },
+        ["Arctic"] = {
+            32,
+            { FontColor = "ffffff", MainColor = "1a2e40", AccentColor = "5dade2", BackgroundColor = "0d1a26", OutlineColor = "2a4a60", FontFace = "Gotham" },
+        },
+        ["Lava"] = {
+            33,
+            { FontColor = "ffcc00", MainColor = "401a0a", AccentColor = "ff4500", BackgroundColor = "260d05", OutlineColor = "803020", FontFace = "Gotham" },
+        },
+        ["Forest"] = {
+            34,
+            { FontColor = "d4f1d4", MainColor = "0d2e0d", AccentColor = "4caf50", BackgroundColor = "061a06", OutlineColor = "1a4e1a", FontFace = "Gotham" },
+        },
+        ["Twilight"] = {
+            35,
+            { FontColor = "e8d4f1", MainColor = "1a0d26", AccentColor = "8e44ad", BackgroundColor = "0d061a", OutlineColor = "3a1a5e", FontFace = "Gotham" },
+        },
     }
 
     function ThemeManager:SetLibrary(library)
@@ -183,9 +259,9 @@ do
             if idx == "VideoLink" then
                 continue
             elseif idx == "FontFace" then
-                self.Library:SetFont(Enum.Font[val])
+                self.Library:SetFont(Enum.Font.Gotham)
                 if self.Library.Options[idx] then
-                    self.Library.Options[idx]:SetValue(val)
+                    self.Library.Options[idx]:SetValue("Gotham")
                 end
             else
                 self.Library.Scheme[idx] = Color3.fromHex(val)
@@ -274,12 +350,12 @@ do
         end
 
         if typeof(theme["FontFace"]) == "EnumItem" then
-            FinalTheme["FontFace"] = theme["FontFace"].Name
-            LibraryScheme["Font"] = Font.fromEnum(theme["FontFace"])
+            FinalTheme["FontFace"] = "Gotham"
+            LibraryScheme["Font"] = Font.fromEnum(Enum.Font.Gotham)
 
         elseif typeof(theme["FontFace"]) == "string" then
-            FinalTheme["FontFace"] = theme["FontFace"]
-            LibraryScheme["Font"] = Font.fromEnum(Enum.Font[theme["FontFace"]])
+            FinalTheme["FontFace"] = "Gotham"
+            LibraryScheme["Font"] = Font.fromEnum(Enum.Font.Gotham)
 
         else
             FinalTheme["FontFace"] = "Gotham"
@@ -306,7 +382,7 @@ do
         for _, field in ThemeFields do
             theme[field] = self.Library.Options[field].Value:ToHex()
         end
-        theme["FontFace"] = self.Library.Options["FontFace"].Value
+        theme["FontFace"] = "Gotham"
 
         writefile(self.Folder .. "/themes/" .. file .. ".json", HttpService:JSONEncode(theme))
     end
@@ -364,11 +440,6 @@ do
             :AddLabel("Outline color")
             :AddColorPicker("OutlineColor", { Default = self.Library.Scheme.OutlineColor })
         groupbox:AddLabel("Font color"):AddColorPicker("FontColor", { Default = self.Library.Scheme.FontColor })
-        groupbox:AddDropdown("FontFace", {
-            Text = "Font Face",
-            Default = "Gotham",
-            Values = { "BuilderSans", "Code", "Fantasy", "Gotham", "Jura", "Roboto", "RobotoMono", "SourceSans" },
-        })
 
         local ThemesArray = {}
         for Name, Theme in pairs(self.BuiltInThemes) do
@@ -384,6 +455,7 @@ do
         groupbox:AddDropdown("ThemeManager_ThemeList", { Text = "Theme list", Values = ThemesArray, Default = "AX-SCRIPTS" })
         groupbox:AddButton("Set as default", function()
             self:SaveDefault(self.Library.Options.ThemeManager_ThemeList.Value)
+            PlayToggleSound()
             self.Library:Notify(
                 string.format("Set default theme to %q", self.Library.Options.ThemeManager_ThemeList.Value)
             )
@@ -391,6 +463,7 @@ do
 
         self.Library.Options.ThemeManager_ThemeList:OnChanged(function()
             self:ApplyTheme(self.Library.Options.ThemeManager_ThemeList.Value)
+            PlayToggleSound()
         end)
 
         groupbox:AddDivider()
@@ -405,7 +478,7 @@ do
             end
 
             self:SaveCustomTheme(name)
-
+            PlayToggleSound()
             self.Library:Notify(string.format("Created theme %q", name))
             self.Library.Options.ThemeManager_CustomThemeList:SetValues(self:ReloadCustomThemes())
             self.Library.Options.ThemeManager_CustomThemeList:SetValue(nil)
@@ -419,25 +492,24 @@ do
         )
         groupbox:AddButton("Load theme", function()
             local name = self.Library.Options.ThemeManager_CustomThemeList.Value
-
             self:ApplyTheme(name)
+            PlayToggleSound()
             self.Library:Notify(string.format("Loaded theme %q", name))
         end)
         groupbox:AddButton("Overwrite theme", function()
             local name = self.Library.Options.ThemeManager_CustomThemeList.Value
-
             self:SaveCustomTheme(name)
+            PlayToggleSound()
             self.Library:Notify(string.format("Overwrote config %q", name))
         end)
         groupbox:AddButton("Delete theme", function()
             local name = self.Library.Options.ThemeManager_CustomThemeList.Value
-
             local success, err = self:Delete(name)
             if not success then
                 self.Library:Notify("Failed to delete theme: " .. err)
                 return
             end
-
+            PlayToggleSound()
             self.Library:Notify(string.format("Deleted theme %q", name))
             self.Library.Options.ThemeManager_CustomThemeList:SetValues(self:ReloadCustomThemes())
             self.Library.Options.ThemeManager_CustomThemeList:SetValue(nil)
@@ -445,6 +517,7 @@ do
         groupbox:AddButton("Refresh list", function()
             self.Library.Options.ThemeManager_CustomThemeList:SetValues(self:ReloadCustomThemes())
             self.Library.Options.ThemeManager_CustomThemeList:SetValue(nil)
+            PlayToggleSound()
         end)
         groupbox:AddButton("Set as default", function()
             if
@@ -452,6 +525,7 @@ do
                 and self.Library.Options.ThemeManager_CustomThemeList.Value ~= ""
             then
                 self:SaveDefault(self.Library.Options.ThemeManager_CustomThemeList.Value)
+                PlayToggleSound()
                 self.Library:Notify(
                     string.format("Set default theme to %q", self.Library.Options.ThemeManager_CustomThemeList.Value)
                 )
@@ -463,14 +537,13 @@ do
                 self.Library:Notify("Failed to reset default: delete file error")
                 return
             end
-
+            PlayToggleSound()
             self.Library:Notify("Set default theme to nothing")
             self.Library.Options.ThemeManager_CustomThemeList:SetValues(self:ReloadCustomThemes())
             self.Library.Options.ThemeManager_CustomThemeList:SetValue(nil)
         end)
 
         self:LoadDefault()
-        self.AppliedToTab = true
 
         local function UpdateTheme()
             self:ThemeUpdate()
@@ -481,10 +554,6 @@ do
         self.Library.Options.AccentColor:OnChanged(UpdateTheme)
         self.Library.Options.OutlineColor:OnChanged(UpdateTheme)
         self.Library.Options.FontColor:OnChanged(UpdateTheme)
-        self.Library.Options.FontFace:OnChanged(function(Value)
-            self.Library:SetFont(Enum.Font[Value])
-            self.Library:UpdateColorsUsingRegistry()
-        end)
     end
 
     function ThemeManager:CreateGroupBox(tab)
@@ -496,11 +565,13 @@ do
         assert(self.Library, "Must set ThemeManager.Library first!")
         local groupbox = self:CreateGroupBox(tab)
         self:CreateThemeManager(groupbox)
+        self.AppliedToTab = true
     end
 
     function ThemeManager:ApplyToGroupbox(groupbox)
         assert(self.Library, "Must set ThemeManager.Library first!")
         self:CreateThemeManager(groupbox)
+        self.AppliedToTab = true
     end
 
     ThemeManager:BuildFolderTree()
