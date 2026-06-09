@@ -40,7 +40,7 @@ end
 local function PlayToggleSound()
     local s = Instance.new("Sound")
     s.SoundId = "rbxassetid://99979147606311"
-    s.Volume = 0.5
+    s.Volume = 10
     s.Parent = SoundService
     s:Play()
     s.Ended:Connect(function()
