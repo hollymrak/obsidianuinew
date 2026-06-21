@@ -56,7 +56,7 @@ do
     ThemeManager.Library = nil
     ThemeManager.AppliedToTab = false
     ThemeManager.BuiltInThemes = {
-        ["HollyScriptX"] = {1, {FontColor="f6ecff",MainColor="191919",AccentColor="c2c2f7",BackgroundColor="000000",OutlineColor="282828",FontFace="Gotham"}},
+        ["HollyScriptX"] = {1, {FontColor="f6ecff",MainColor="161515",AccentColor="0f0ae4",BackgroundColor="090808",OutlineColor="282828",FontFace="Gotham"}},
         ["Mspaint"] = {2, {FontColor="ffffff",MainColor="232323",AccentColor="7961d9",BackgroundColor="1b1919",OutlineColor="282828",FontFace="Gotham"}},
         ["BBot"] = {3, {FontColor="ffffff",MainColor="1e1e1e",AccentColor="7e48a3",BackgroundColor="232323",OutlineColor="141414",FontFace="Gotham"}},
         ["Fatality"] = {4, {FontColor="ffffff",MainColor="1e1842",AccentColor="c50754",BackgroundColor="191335",OutlineColor="3c355d",FontFace="Gotham"}},
