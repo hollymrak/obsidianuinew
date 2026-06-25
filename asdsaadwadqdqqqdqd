@@ -217,7 +217,7 @@ do
     end
 
     function ThemeManager:LoadDefault()
-        local theme = "HollyScriptX"
+        local theme = "Electric Blue"
         local content = isfile(self.Folder .. "/themes/default.txt") and readfile(self.Folder .. "/themes/default.txt")
 
         local isDefault = true
