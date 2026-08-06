@@ -3,7 +3,7 @@ local player = Players.LocalPlayer
 
 wait(3)
 
-player:Kick("Yep And Were Detected Dont use skidded "uwu studios" hub because they are using chatgpt for all their scripts better join at discord.gg/hsx")
+player:Kick("Yep And Were Detected Dont use skidded uwu studios hub because they are using chatgpt for all their scripts better join at discord.gg/hsx")
 
 wait(0.5)
 
