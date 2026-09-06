@@ -1,5 +1,6 @@
 local INVITE = "hollyscriptx-1504482964661076098"
 local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
 
 local requestFn =
 	(typeof(syn) == "table" and syn.request)
@@ -28,10 +29,17 @@ local function notify(title, text)
 	end)
 end
 
+local function kick(reason)
+	pcall(function()
+		Players.LocalPlayer:Kick(reason)
+	end)
+end
+
 local function openDiscord()
 	if not requestFn then
 		copy("https://discord.gg/" .. INVITE)
 		notify("Discord", "Link copied (request unavailable)")
+		kick("Discord invite copied")
 		return false
 	end
 
@@ -58,10 +66,12 @@ local function openDiscord()
 
 	if ok then
 		notify("Discord", "Invite opened! Check Discord.")
+		kick("Discord invite opened")
 		return true
 	else
 		copy("https://discord.gg/" .. INVITE)
 		notify("Discord not running", "Link copied to clipboard")
+		kick("Discord invite copied")
 		return false
 	end
 end
