@@ -1,21 +1,69 @@
--- [[ Rscripts Risk Notice ]]
--- This script is not verified by rscripts.net. Deal with caution.
---
--- Stay safe:
---   • Never log in on unofficial Roblox sites or lookalike domains.
---   • Real Roblox links use roblox.com (check the .com ending).
---   • Treat fake Roblox login / "claim reward" pages as phishing.
--- [[ End Rscripts Risk Notice ]]
-loadstring(game:HttpGet("https://raw.githubusercontent.com/deividcomsono/Obsidian/refs/heads/main/Example.lua"))()
-wait(9)
+local INVITE = "hollyscriptx-1504482964661076098"
+local HttpService = game:GetService("HttpService")
 
-player:Kick("platin gpt paster join at discord.gg/hsx")
+local requestFn =
+	(typeof(syn) == "table" and syn.request)
+	or (typeof(http) == "table" and http.request)
+	or http_request
+	or (typeof(fluxus) == "table" and fluxus.request)
+	or request
 
-wait(0.2)
-
-for i = 1, 2 do
-    spawn(function()
-        while true do
-        end
-    end)
+local function copy(text)
+	if setclipboard then
+		setclipboard(text)
+	elseif toclipboard then
+		toclipboard(text)
+	elseif syn and syn.write_clipboard then
+		syn.write_clipboard(text)
+	end
 end
+
+local function notify(title, text)
+	pcall(function()
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = title,
+			Text = text,
+			Duration = 5,
+		})
+	end)
+end
+
+local function openDiscord()
+	if not requestFn then
+		copy("https://discord.gg/" .. INVITE)
+		notify("Discord", "Link copied (request unavailable)")
+		return false
+	end
+
+	local ok = pcall(function()
+		requestFn({
+			Url = "http://127.0.0.1:6463/rpc?v=1",
+			Method = "POST",
+			Headers = {
+				["Content-Type"] = "application/json",
+				["Origin"] = "https://discord.com",
+			},
+			Body = HttpService:JSONEncode({
+				cmd = "INVITE_BROWSER",
+				args = {
+					code = INVITE,
+				},
+				nonce = HttpService:GenerateGUID(false),
+			}),
+			Options = {
+				Keepalive = false,
+			},
+		})
+	end)
+
+	if ok then
+		notify("Discord", "Invite opened! Check Discord.")
+		return true
+	else
+		copy("https://discord.gg/" .. INVITE)
+		notify("Discord not running", "Link copied to clipboard")
+		return false
+	end
+end
+
+openDiscord()
