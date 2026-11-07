@@ -1,4 +1,4 @@
-local INVITE = "hollyscriptx-1504482964661076098"
+local INVITE = "hsx"
 local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
 
